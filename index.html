@@ -1,87 +1,109 @@
 <!doctype html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self'; object-src 'none';">
 
-		<title>Myplanet reveal.js</title>
+		<title>Altering Drupal Core</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/myplanet.css">
 		<link rel="stylesheet" href="css/presentation.css">
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
-
+		<link rel="icon" href="lib/myplanet/logo/radiant-orange/mark-knockout.png"/>
 		<link rel="icon" href="lib/myplanet/logo/radiant-orange/mark-knockout.svg"/>
 
+        <meta property="og:url" content="https://gapple.github.io/presentation-kittens-safe/" />
+        <meta property="og:title" content="Altering Drupal Core" />
+        <meta property="og:image" content="https://gapple.github.io/presentation-kittens-safe/images/facebook-card.png" />
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:creator" content="@gappleca">
+        <meta name="twitter:image" content="https://gapple.github.io/presentation-kittens-safe/images/twitter-card.png">
+
 		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
+        <script src="js/reveal-print.js"></script>
 	</head>
 	<body>
-		<div class="reveal pattern--orange-river">
+		<div class="reveal pattern--indigo">
 			<div class="slides">
-				<section class="intro" id="intro">
-					<div class="logo-wrapper">
-						<div class="logo"><span class="visually-hidden">Myplanet</span></div>
-					</div>
-				</section>
-				<section class="title" id="title">
-					<div class="grid-wrapper">
-						<div class="header">
-							<!-- Remove logo--full class to only show brand mark -->
-							<div class="logo logo--full"><span class="visually-hidden">Myplanet</span></div>
+				<section>
+					<section class="title" id="title">
+						<div class="grid-wrapper">
+							<div class="header">
+								<!-- Remove logo--full class to only show brand mark -->
+								<div class="logo logo--full"><span class="visually-hidden">Myplanet</span></div>
+							</div>
+							<div class="content">
+								<div>
+									<h1>Keeping Kittens Safe</h1>
+									<h2>While Altering Drupal Core</h2>
+								</div>
+								<div class="description">
+									Drupalcon Nashville
+								</div>
+							</div>
+							<div class="credit">
+								<hr/>
+								<div class="label">Presented By</div>
+								<div class="name">Geoff Appleby</div>
+							</div>
+							<a class="presentation-url" href="https://gapple.github.io/presentation-kittens-safe/">https://gapple.github.io/presentation-kittens-safe/</a>
 						</div>
-						<div class="content">
-							<h1>Enter Your Title</h1>
-							<div class="description">
-								This is where the description goes. Keep it short and sweet.
+					</section>
+					<section class="about" id="about">
+						<div class="grid-wrapper">
+							<div class="content">
+								<aside>
+									<h2>Geoff Appleby</h2>
+									<hr>
+									<ul class="projects">
+										<li><a href="https://www.drupal.org/project/csp">Content-Security-Policy</a></li>
+										<li><a href="https://www.drupal.org/project/ga">Googalytics</a></li>
+										<li><a href="https://www.drupal.org/project/ie9">IE9 Compatibility</a></li>
+										<li><a href="https://www.drupal.org/project/persistent_login">Persistent Login</a></li>
+									</ul>
+									<hr>
+									<ul class="accounts">
+										<li class="drupal"><a href="https://www.drupal.org/u/gapple"><i class="fa fa-drupal"></i> <span>gapple</span></a></li>
+										<li class="twitter"><a href="https://twitter.com/gappleca"><i class="fa fa-twitter"></i> <span>gappleca</span></a></li>
+									</ul>
+								</aside>
 							</div>
 						</div>
-						<div class="credit">
-							<hr/>
-							<div class="label">Presented By</div>
-							<div class="name">Full Name</div>
-							<div class="role">Role</div>
+					</section>
+					<section class="intro" id="intro">
+						<div class="logo-wrapper">
+							<div class="logo"><span class="visually-hidden">Myplanet</span></div>
 						</div>
-					</div>
+					</section>
 				</section>
-				<section class="subsection color--ice" id="subsection--ice">
-					<div class="grid-wrapper">
-						<div class="logo"></div>
-						<h1>Enter Your Title</h1>
-						<div class="description">
-							This is where the description goes. Keep it short and sweet.
-						</div>
-					</div>
-				</section>
-				<section id="blank">
-					<div class="grid-wrapper">
-						<div class="header">
-							<div class="logo"></div>
-							<div class="section">Section</div>
-						</div>
-						<div class="content">Content</div>
-					</div>
-				</section>
-				<section class="quote color--midnight" id="quote--midnight">
-					<div class="grid-wrapper">
-						<div class="logo"></div>
-						<blockquote>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis enim risus. Cras cursus at lacus eget malesuada. Duis vel justo lorem.
-							</p>
-							<hr/>
-							<cite>Caption/Annotation/Citation</cite>
-						</blockquote>
-					</div>
-				</section>
+                <section>
+                    <section class="subsection color--ice" id="subsection--ice">
+                        <div class="grid-wrapper">
+                            <div class="header">
+                                <div class="logo"></div>
+                                <div class="twitter"><a href="https://twitter.com/gappleca"><i class="fa fa-twitter"></i> <span>gappleca</span></a></div>
+                            </div>
+                            <h1>Service Container</h1>
+                            <div class="description">
+
+                            </div>
+                        </div>
+                    </section>
+                    <section id="blank">
+                        <div class="grid-wrapper">
+                            <div class="header">
+                                <div class="logo"></div>
+                                <div class="section">Service Container</div>
+                                <div class="twitter"><a href="https://twitter.com/gappleca"><i class="fa fa-twitter"></i> <span>gappleca</span></a></div>
+                            </div>
+                            <div class="content">
+
+                            </div>
+                        </div>
+                    </section>
+                </section>
 				<section class="code color--dark" id="code--path">
 					<div class="grid-wrapper">
 						<div class="header">
@@ -107,93 +129,11 @@
 						</figure>
 					</div>
 				</section>
-				<!-- Team page can accommodate one or two profiles. -->
-				<section class="team" id="team">
-					<div class="grid-wrapper">
-						<div class="header">
-							<div class="logo"></div>
-							<div class="section">Section</div>
-						</div>
-						<div class="content">
-							<div class="profile">
-								<div class="basics">
-									<img src="lib/myplanet/portait-placeholder.png">
-									<div class="name">Name</div>
-									<div class="role">Role</div>
-									</div>
-								<div class="details">
-									<h2>Profile</h2>
-									<p>Yuriy is a Front-end Developer and Solutions Architect with Myplanet, specializing in Front-end and Drupal development. Originally joining the team remotely from Ukraine as a Creative Lead, Yuriy made the switch to full-time coding—and to Canada—in 2013. During his time with Myplanet, Yuriy has worked on an increasingly impressive array of projects for some of our most high-profile customers. He holds his Acquia certifications for Development and Front-end Development.</p>
-									<p class="supplement">Front-end Developers build the user interface layer of each product, using their deep knowledge of Drupal theming and use of popular front-end frameworks, including Angular.js, React.js, d3.js, and of course HTML5 and CSS.</p>
-								</div>
-							</div>
-							<div class="profile">
-								<div class="basics">
-									<img src="lib/myplanet/portait-placeholder.png">
-									<div class="name">Name</div>
-									<div class="role">Role</div>
-								</div>
-								<div class="details">
-									<h2>Profile</h2>
-									<p>Yuriy is a Front-end Developer and Solutions Architect with Myplanet, specializing in Front-end and Drupal development. Originally joining the team remotely from Ukraine as a Creative Lead, Yuriy made the switch to full-time coding—and to Canada—in 2013. During his time with Myplanet, Yuriy has worked on an increasingly impressive array of projects for some of our most high-profile customers. He holds his Acquia certifications for Development and Front-end Development.</p>
-									<p class="supplement">Front-end Developers build the user interface layer of each product, using their deep knowledge of Drupal theming and use of popular front-end frameworks, including Angular.js, React.js, d3.js, and of course HTML5 and CSS.</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
-				<section class="end color--radiant" id="end-radiant">
-					<div class="logo-wrapper">
-						<div class="logo"><span class="visually-hidden">Myplanet</span></div>
-					</div>
-				</section>
 			</div>
 		</div>
 
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.js"></script>
-
-		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
-			Reveal.initialize({
-				center: false,
-				width: "100%",
-				height: "100%",
-				margin: 0,
-				minScale: 1,
-				maxScale: 1,
-				history: true,
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{
-						src: 'plugin/highlight/highlight.js',
-						async: true,
-						condition: function () {
-							// Trim whitespace from code blocks, and prevent HTML escaping by default.
-							// This must be done before the plugin is loaded.
-							Array.prototype.forEach.call(
-								document.querySelectorAll('pre code'),
-								function (element) {
-									if (!element.hasAttribute('data-notrim')) {
-										element.setAttribute('data-trim', '');
-									}
-									if (!element.hasAttribute('data-escape')) {
-										element.setAttribute('data-noescape', '');
-									}
-								}
-							);
-							return true;
-						},
-						callback: function () {
-							hljs.initHighlightingOnLoad();
-						}
-					}
-				]
-			});
-		</script>
+		<script src="js/reveal-init.js"></script>
 	</body>
 </html>
