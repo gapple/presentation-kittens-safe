@@ -131,6 +131,18 @@ img {
   width: 1.8ex;
 }
 
+.screenshot {
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+}
+#ie9-support {
+  background-image: url("../images/ie9-support.png");
+}
+#ie9-collection-renderer {
+  background-image: url("../images/ie9-collection-renderer.png");
+}
 
 #end .content {
   margin-top: auto;
