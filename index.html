@@ -99,9 +99,9 @@
                             </div>
                             <figure class="code">
                                 <pre><code class="lang-yml">
-                                my_module.my_service:
+                                  my_module.my_service:
                                     class: Drupal\my_module\MyService
-                                    arguments: ['@config.factory']
+                                    arguments: [ '@config.factory' ]
 							    </code></pre>
                                 <figcaption class="path">my_module/my_module.services.yml</figcaption>
                             </figure>
@@ -117,21 +117,21 @@
                                 <pre><code class="lang-php">
                                     class MyService {
 
-                                        /**
-                                         * The Config Factory Service.
-                                         *
-                                         * @var \Drupal\Core\Config\ConfigFactoryInterface
-                                         */
-                                        private $configFactory;
+                                      /**
+                                       * The Config Factory Service.
+                                       *
+                                       * @var \Drupal\Core\Config\ConfigFactoryInterface
+                                       */
+                                      private $configFactory;
 
-                                        /**
-                                         * Constructs the Example service.
-                                         *
-                                         * @param \Drupal\Core\Config\ConfigFactoryInterface $configFactory
-                                         */
-                                        public function __construct(ConfigFactoryInterface $configFactory) {
-                                            $this->configFactory = $configFactory;
-                                        }
+                                      /**
+                                       * Constructs the Example service.
+                                       *
+                                       * @param \Drupal\Core\Config\ConfigFactoryInterface $configFactory
+                                       */
+                                      public function __construct(ConfigFactoryInterface $configFactory) {
+                                        $this->configFactory = $configFactory;
+                                      }
 
                                     }
 							    </code></pre>
@@ -197,13 +197,13 @@
 
                                     class MyModuleServiceProvider extends ServiceProviderBase {
 
-                                        /**
-                                         * {@inheritdoc}
-                                         */
-                                        public function alter(ContainerBuilder $container) {
-                                            $definition = $container->getDefinition('some_core_service');
-                                            $definition->setClass('Drupal\my_module\MyCoreOverrideService');
-                                        }
+                                      /**
+                                       * {@inheritdoc}
+                                       */
+                                      public function alter(ContainerBuilder $container) {
+                                        $definition = $container->getDefinition('some_core_service');
+                                        $definition->setClass('Drupal\my_module\MyCoreOverrideService');
+                                      }
 
                                     }
 							    </code></pre>
@@ -223,21 +223,21 @@
 
                                     class MyCoreOverrideService implements SomeCoreServiceInterface {
 
-                                        <span class="fragment">public function implement() {
-                                            // ...
-                                        }</span>
+                                      <span class="fragment">public function implement() {
+                                        // ...
+                                      }</span>
 
-                                        <span class="fragment">public function every() {
-                                            // ...
-                                        }</span>
+                                      <span class="fragment">public function every() {
+                                        // ...
+                                      }</span>
 
-                                        <span class="fragment">public function interface() {
-                                            // ...
-                                        }</span>
+                                      <span class="fragment">public function interface() {
+                                        // ...
+                                      }</span>
 
-                                        <span class="fragment">public function method() {
-                                            // ...
-                                        }</span>
+                                      <span class="fragment">public function method() {
+                                        // ...
+                                      }</span>
 
                                     }
 							    </code></pre>
@@ -257,12 +257,12 @@
 
                                     class MyCoreOverrideService extends SomeCoreService {
 
-                                        public function onlyTheOverriddenMethod() {
-                                            // ...
+                                      public function onlyTheOverriddenMethod() {
+                                        // ...
 
-                                            $someDataFromTheOriginalService =
-                                                parent::methodFromTheOrginalService();
-                                        }
+                                        $someDataFromTheOriginalService =
+                                          parent::methodFromTheOrginalService();
+                                      }
 
                                     }
 							    </code></pre>
@@ -306,7 +306,7 @@
                                 <div class="section">Altering Services</div>
                             </div>
                             <figure class="code">
-                                <pre><code class="lang-php">
+                                <pre><code class="lang-yml">
                                     services:
                                       my_module.core_service_decorator:
                                         class: Drupal\my_module\CoreServiceDecorator
@@ -329,17 +329,17 @@
 
                                     class CoreServiceDecorator implements SomeCoreServiceInterface {
 
-                                        public function __construct(
-                                            CoreServiceInterface $coreService,
-                                            ConfigFactoryInterface $configFactory
-                                        ) {
-                                            $this->coreService = $coreService;
-                                            $this->configFactory = $configFactory;
-                                        }
+                                      public function __construct(
+                                        CoreServiceInterface $coreService,
+                                        ConfigFactoryInterface $configFactory
+                                      ) {
+                                        $this->coreService = $coreService;
+                                        $this->configFactory = $configFactory;
+                                      }
 
-                                        public function overriddenMethod() {
-                                            $coreServiceData = $this->coreService->method();
-                                        }
+                                      public function overriddenMethod() {
+                                        $coreServiceData = $this->coreService->method();
+                                      }
 
                                     }
 							    </code></pre>
@@ -359,19 +359,19 @@
 
                                     class CoreServiceDecorator implements SomeCoreServiceInterface {
 
-                                        // ...
+                                      // ...
 
-                                        <span class="fragment">public function every() {
-                                            return $this->coreService->every();
-                                        }</span>
+                                      <span class="fragment">public function every() {
+                                        return $this->coreService->every();
+                                      }</span>
 
-                                        <span class="fragment">public function interface() {
-                                            return $this->coreService->interface();
-                                        }</span>
+                                      <span class="fragment">public function interface() {
+                                        return $this->coreService->interface();
+                                      }</span>
 
-                                        <span class="fragment">public function method() {
-                                            return $this->coreService->method();
-                                        }</span>
+                                      <span class="fragment">public function method() {
+                                        return $this->coreService->method();
+                                      }</span>
 
                                     }
 							    </code></pre>
