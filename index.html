@@ -103,7 +103,7 @@
                                     class: Drupal\my_module\MyService
                                     arguments: ['@config.factory']
 							    </code></pre>
-                                <figcaption class="path">my_module.services.yml</figcaption>
+                                <figcaption class="path">my_module/my_module.services.yml</figcaption>
                             </figure>
                         </div>
                     </section>
@@ -193,6 +193,8 @@
                             </div>
                             <figure class="code">
                                 <pre><code class="lang-php">
+                                    namespace Drupal\my_module;
+
                                     class MyModuleServiceProvider extends ServiceProviderBase {
 
                                         /**
@@ -202,10 +204,85 @@
                                             $definition = $container->getDefinition('some_core_service');
                                             $definition->setClass('Drupal\my_module\MyCoreOverrideService');
                                         }
+
                                     }
 							    </code></pre>
                                 <figcaption class="path">my_module/src/MyModuleServiceProvider.php</figcaption>
                             </figure>
+                        </div>
+                    </section>
+                    <section class="code color--dark">
+                        <div class="grid-wrapper">
+                            <div class="header">
+                                <div class="logo"></div>
+                                <div class="section">Altering Services</div>
+                            </div>
+                            <figure class="code">
+                                <pre><code class="lang-php">
+                                    namespace Drupal\my_module;
+
+                                    class MyCoreOverrideService implements SomeCoreServiceInterface {
+
+                                        <span class="fragment">public function implement() {
+                                            // ...
+                                        }</span>
+
+                                        <span class="fragment">public function every() {
+                                            // ...
+                                        }</span>
+
+                                        <span class="fragment">public function interface() {
+                                            // ...
+                                        }</span>
+
+                                        <span class="fragment">public function method() {
+                                            // ...
+                                        }</span>
+
+                                    }
+							    </code></pre>
+                                <figcaption class="path">my_module/src/MyModuleServiceProvider.php</figcaption>
+                            </figure>
+                        </div>
+                    </section>
+                    <section class="code color--dark">
+                        <div class="grid-wrapper">
+                            <div class="header">
+                                <div class="logo"></div>
+                                <div class="section">Altering Services</div>
+                            </div>
+                            <figure class="code">
+                                <pre><code class="lang-php">
+                                    namespace Drupal\my_module;
+
+                                    class MyCoreOverrideService extends SomeCoreService {
+
+                                        public function onlyTheOverriddenMethod() {
+                                            // ...
+
+                                            $someDataFromTheOriginalService =
+                                                parent::methodFromTheOrginalService();
+                                        }
+
+                                    }
+							    </code></pre>
+                                <figcaption class="path">my_module/src/MyModuleServiceProvider.php</figcaption>
+                            </figure>
+                        </div>
+                    </section>
+                    <section>
+                        <div class="grid-wrapper">
+                            <div class="header">
+                                <div class="logo"></div>
+                                <div class="section">Altering Services</div>
+                            </div>
+                            <div class="content">
+                                <ul>
+                                    <li><code>CoreService</code></li>
+                                    <li><code><strike>ContribModuleService extends CoreService</strike></code></li>
+                                    <li><code>CustomModuleService extends CoreService</code></li>
+                                </ul>
+                            </div>
                         </div>
                     </section>
                 </section>
@@ -220,6 +297,86 @@
                             <div class="description">
 
                             </div>
+                        </div>
+                    </section>
+                    <section class="code color--dark">
+                        <div class="grid-wrapper">
+                            <div class="header">
+                                <div class="logo"></div>
+                                <div class="section">Altering Services</div>
+                            </div>
+                            <figure class="code">
+                                <pre><code class="lang-php">
+                                    services:
+                                      my_module.core_service_decorator:
+                                        class: Drupal\my_module\CoreServiceDecorator
+                                        arguments: [ '@my_module.core_service_decorator.inner', '@config.factory']
+                                        decorates: core_service
+							    </code></pre>
+                                <figcaption class="path">my_module/my_module.services.yml</figcaption>
+                            </figure>
+                        </div>
+                    </section>
+                    <section class="code color--dark">
+                        <div class="grid-wrapper">
+                            <div class="header">
+                                <div class="logo"></div>
+                                <div class="section">Altering Services</div>
+                            </div>
+                            <figure class="code">
+                                <pre><code class="lang-php">
+                                    namespace Drupal\my_module;
+
+                                    class CoreServiceDecorator implements SomeCoreServiceInterface {
+
+                                        public function __construct(
+                                            CoreServiceInterface $coreService,
+                                            ConfigFactoryInterface $configFactory
+                                        ) {
+                                            $this->coreService = $coreService;
+                                            $this->configFactory = $configFactory;
+                                        }
+
+                                        public function overriddenMethod() {
+                                            $coreServiceData = $this->coreService->method();
+                                        }
+
+                                    }
+							    </code></pre>
+                                <figcaption class="path">my_module/src/MyModuleServiceProvider.php</figcaption>
+                            </figure>
+                        </div>
+                    </section>
+                    <section class="code color--dark">
+                        <div class="grid-wrapper">
+                            <div class="header">
+                                <div class="logo"></div>
+                                <div class="section">Altering Services</div>
+                            </div>
+                            <figure class="code">
+                                <pre><code class="lang-php">
+                                    namespace Drupal\my_module;
+
+                                    class CoreServiceDecorator implements SomeCoreServiceInterface {
+
+                                        // ...
+
+                                        <span class="fragment">public function every() {
+                                            return $this->coreService->every();
+                                        }</span>
+
+                                        <span class="fragment">public function interface() {
+                                            return $this->coreService->interface();
+                                        }</span>
+
+                                        <span class="fragment">public function method() {
+                                            return $this->coreService->method();
+                                        }</span>
+
+                                    }
+							    </code></pre>
+                                <figcaption class="path">my_module/src/MyModuleServiceProvider.php</figcaption>
+                            </figure>
                         </div>
                     </section>
                 </section>
