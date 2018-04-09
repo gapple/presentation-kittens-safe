@@ -223,9 +223,9 @@
 
                                     class MyCoreOverrideService implements SomeCoreServiceInterface {
 
-                                      <span class="fragment">public function implement() {
+                                      public function reimplement() {
                                         // ...
-                                      }</span>
+                                      }
 
                                       <span class="fragment">public function every() {
                                         // ...
@@ -303,7 +303,7 @@
                         <div class="grid-wrapper">
                             <div class="header">
                                 <div class="logo"></div>
-                                <div class="section">Altering Services</div>
+                                <div class="section">Decorating Services</div>
                             </div>
                             <figure class="code">
                                 <pre><code class="lang-yml">
@@ -321,7 +321,7 @@
                         <div class="grid-wrapper">
                             <div class="header">
                                 <div class="logo"></div>
-                                <div class="section">Altering Services</div>
+                                <div class="section">Decorating Services</div>
                             </div>
                             <figure class="code">
                                 <pre><code class="lang-php">
@@ -351,7 +351,7 @@
                         <div class="grid-wrapper">
                             <div class="header">
                                 <div class="logo"></div>
-                                <div class="section">Altering Services</div>
+                                <div class="section">Decorating Services</div>
                             </div>
                             <figure class="code">
                                 <pre><code class="lang-php">
@@ -359,7 +359,9 @@
 
                                     class CoreServiceDecorator implements SomeCoreServiceInterface {
 
-                                      // ...
+                                      public function proxy() {
+                                        return $this->coreService->every();
+                                      }
 
                                       <span class="fragment">public function every() {
                                         return $this->coreService->every();
@@ -379,10 +381,116 @@
                             </figure>
                         </div>
                     </section>
+                    <section>
+                        <div class="grid-wrapper">
+                            <div class="header">
+                                <div class="logo"></div>
+                                <div class="section">Decorating Services</div>
+                            </div>
+                            <div class="content">
+                                <ul>
+                                    <li><code>CoreService</code></li>
+                                    <ul>
+                                        <li><code>ContribModuleServiceDecorator</code></li>
+                                        <ul>
+                                            <li><code>CustomModuleServiceDecorator</code></li>
+                                        </ul>
+                                    </ul>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="code color--dark">
+                        <div class="grid-wrapper">
+                            <div class="header">
+                                <div class="logo"></div>
+                                <div class="section">Decorating Services</div>
+                            </div>
+                            <figure class="code">
+                                <pre><code class="lang-yml">
+                                    services:
+                                      my_module.core_service_decorator:
+                                        class: Drupal\my_module\CoreServiceDecorator
+                                        arguments: [ '@my_module.core_service_decorator.inner', '@config.factory']
+                                        decorates: core_service
+                                        decoration_priority: 5
+							    </code></pre>
+                                <figcaption class="path">my_module/my_module.services.yml</figcaption>
+                            </figure>
+                        </div>
+                    </section>
+                    <section>
+                        <div class="grid-wrapper">
+                            <div class="header">
+                                <div class="logo"></div>
+                                <div class="section">Decorating Services</div>
+                            </div>
+                            <div class="content">
+                                <ul>
+                                    <li><code>CoreService</code></li>
+                                    <ul>
+                                        <li><code>CustomModuleServiceDecorator</code> <span class="smaller">(priority 5)</span></li>
+                                        <ul>
+                                            <li><code>ContribModuleServiceDecorator</code> <span class="smaller">(priority 0)</span></li>
+                                        </ul>
+                                    </ul>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
                 </section>
                 <section>
                     <section id="ie9-support" class="screenshot"></section>
                     <section id="ie9-collection-renderer" class="screenshot"></section>
+                    <section class="code color--dark">
+                        <div class="grid-wrapper">
+                            <div class="header">
+                                <div class="logo"></div>
+                                <div class="section">IE9 Compatibility</div>
+                            </div>
+                            <figure class="code">
+                                <pre><code class="lang-yml">
+                                    services:
+                                      ie9.css.collection_renderer:
+                                        class: Drupal\ie9\Asset\CssCollectionRenderer
+                                        arguments: [ '@state' , '@ie9.css.collection_renderer.inner' ]
+                                        decorates: asset.css.collection_renderer
+							    </code></pre>
+                                <figcaption class="path">ie9/ie9.services.yml</figcaption>
+                            </figure>
+                        </div>
+                    </section>
+                    <section class="code color--dark">
+                        <div class="grid-wrapper">
+                            <div class="header">
+                                <div class="logo"></div>
+                                <div class="section">IE9 Compatibility</div>
+                            </div>
+                            <figure class="code">
+                                <pre><code class="lang-php">
+                                    namespace Drupal\ie9\Asset;
+
+                                    class CssCollectionRenderer implements AssetCollectionRendererInterface {
+
+                                      public function __construct(StateInterface $state, AssetCollectionRendererInterface $cssCollectionRenderer) {
+                                        $this->state = $state;
+                                        $this->originalCssCollectionRenderer = $cssCollectionRenderer;
+                                      }
+
+                                      public function render(array $css_assets) {
+                                        if (count($css_assets) <= 31) {
+                                          return $this->originalCssCollectionRenderer->render($css_assets);
+                                        }
+
+                                        // ...
+
+                                        return $elements;
+                                    }
+							    </code></pre>
+                                <figcaption class="path">ie9/src/Asset/CssCollectionRenderer.php</figcaption>
+                            </figure>
+                        </div>
+                    </section>
                 </section>
                 <section id="references">
                     <div class="grid-wrapper">

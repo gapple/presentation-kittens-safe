@@ -21,13 +21,16 @@ img {
 }
 
 .reveal ul {
-  font-size: 1.5em;
+  font-size: 1.5rem;
   align-self: center;
   justify-self: center;
 }
 @media (min-width: 1280px) {
   .reveal ul {
     width: calc(80% - 1em);
+  }
+  .reveal ul ul {
+    width: auto;
   }
 }
 
@@ -67,6 +70,10 @@ img {
   font-size: 0.8em;
   align-self: center;
   opacity: 0.5;
+}
+
+.reveal .smaller {
+  font-size: 0.8em;
 }
 
 @media (max-width: 480px) {
