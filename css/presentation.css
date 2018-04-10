@@ -150,7 +150,16 @@ img {
   background-repeat: no-repeat;
   background-origin: content-box;
 }
-#ie9-support {
+
+#meme img {
+  align-self: center;
+  justify-self: center;
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  object-fit: contain;
+}
+#ie9--support {
   background-image: url("../images/ie9-support.png");
 }
 #ie9--issue {
