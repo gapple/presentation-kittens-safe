@@ -346,8 +346,10 @@
                                         $this->configFactory = $configFactory;
                                       }
 
-                                      public function overriddenMethod() {
+                                      public function method() {
                                         $coreServiceData = $this->coreService->method();
+
+                                        return $data;
                                       }
 
                                     }
@@ -369,7 +371,7 @@
                                     class CoreServiceDecorator implements SomeCoreServiceInterface {
 
                                       public function proxy() {
-                                        return $this->coreService->every();
+                                        return $this->coreService->proxy();
                                       }
 
                                       <span class="fragment">public function every() {
