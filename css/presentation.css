@@ -158,7 +158,14 @@ img {
   width: 100vw;
   height: 100vh;
   object-fit: contain;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
 }
+#altering-services--priority strike {
+  opacity: 0.6;
+}
+
 #ie9--support {
   background-image: url("../images/ie9-support.png");
 }

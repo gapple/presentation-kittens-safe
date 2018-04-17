@@ -11,6 +11,11 @@ Reveal.initialize({
   minScale: 1,
   maxScale: 1,
   history: true,
+  // Arrow keys progress through sub-slides
+  // keyboard: {
+  // 	39: 'next', // right key
+  // 	37: 'prev'  // left key
+  // },
   dependencies: [
     { src: 'plugin/markdown/marked.js' },
     { src: 'plugin/markdown/markdown.js' },
